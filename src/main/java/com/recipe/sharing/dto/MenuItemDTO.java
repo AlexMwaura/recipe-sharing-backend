@@ -6,14 +6,14 @@ import lombok.Data;
 public class MenuItemDTO {
     private String name;
     private String category;
-    private double price;
-    private String image;
+    private Double price;
+    private String imagePath;
 
-    public MenuItemDTO(String name, String category, double price, String image) {
+    public MenuItemDTO(String name, String category, double price, String imagePath) {
         this.name = name;
         this.category = category;
         this.price = price;
-        this.image = image;
+        this.imagePath = imagePath;
 
     }
 }
