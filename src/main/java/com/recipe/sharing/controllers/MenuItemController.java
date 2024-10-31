@@ -3,6 +3,7 @@ package com.recipe.sharing.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.recipe.sharing.dto.CategoryDTO;
 import com.recipe.sharing.dto.MenuItemDTO;
+import com.recipe.sharing.dto.UpdateRecipeDTO;
 import com.recipe.sharing.entities.MenuItem;
 import com.recipe.sharing.services.MenuItemService;
 import org.springframework.web.bind.annotation.*;
@@ -40,5 +41,15 @@ public class MenuItemController {
     public List<MenuItemDTO> getMenuItemsByCategory(@RequestBody CategoryDTO categoryDTO) {
         return menuItemService.getMenuItemsByCategory(categoryDTO.getCategory());
     }
-
+    @GetMapping("/items/{name}")
+    public MenuItemDTO getRecipeByName(@PathVariable("name") String name) {
+        return menuItemService.getMenuItemByName(name);
+    }
+    @PutMapping("/items/{name}")
+    public MenuItemDTO updateRecipeDetails(
+            @PathVariable("name") String name,
+            @RequestBody UpdateRecipeDTO updateRecipeDTO
+    ) {
+        return menuItemService.updateRecipeDetails(name, updateRecipeDTO);
+    }
 }

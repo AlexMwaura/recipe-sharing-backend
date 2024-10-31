@@ -13,5 +13,9 @@ public class MenuItem {
     private String category;
     private double price;
     private String imagePath; // Store the path to the image file instead of the base64 data
+    private String ingredients;
+    @Lob
+    private String method;
+
 
 }

@@ -1,6 +1,7 @@
 package com.recipe.sharing.services;
 
 import com.recipe.sharing.dto.MenuItemDTO;
+import com.recipe.sharing.dto.UpdateRecipeDTO;
 import com.recipe.sharing.entities.MenuItem;
 import com.recipe.sharing.repositories.MenuItemRepository;
 import org.springframework.stereotype.Service;
@@ -50,7 +51,9 @@ public class MenuItemService {
                 menuItem.getName(),
                 menuItem.getCategory(),
                 menuItem.getPrice(),
-                menuItem.getImagePath()
+                menuItem.getImagePath(),
+                menuItem.getIngredients(),
+                menuItem.getMethod()
         );
     }
     public MenuItem saveMenuItem(MenuItemDTO menuItemDTO ,MultipartFile imageFile) {
@@ -89,6 +92,16 @@ public class MenuItemService {
 
         return "/images/" + filename;
     }
-
+    public MenuItemDTO getMenuItemByName(String name) {
+        MenuItem menuItem = menuItemRepository.findByName(name);
+        return convertToDTO(menuItem);
+    }
+    public MenuItemDTO updateRecipeDetails(String name, UpdateRecipeDTO updateRecipeDTO) {
+        MenuItem menuItem = menuItemRepository.findByName(name);
+        menuItem.setIngredients(String.valueOf(updateRecipeDTO.getIngredients()));
+        menuItem.setMethod(updateRecipeDTO.getMethod());
+        MenuItem updatedMenuItem = menuItemRepository.save(menuItem);
+        return convertToDTO(updatedMenuItem);
+    }
 
 }
