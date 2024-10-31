@@ -1,9 +1,6 @@
 package com.recipe.sharing.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
@@ -15,5 +12,10 @@ public class MenuItem {
     private String name;
     private String category;
     private double price;
-    private String image;
+    private String imagePath; // Store the path to the image file instead of the base64 data
+    private String ingredients;
+    @Lob
+    private String method;
+
+
 }

@@ -12,6 +12,8 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
+                .cors() // Enable CORS with the settings in CorsConfig
+                .and()
                 .authorizeHttpRequests()
                 .requestMatchers("/auth/login").permitAll() // Allow access to login
                 .anyRequest().authenticated() // Restrict other endpoints
