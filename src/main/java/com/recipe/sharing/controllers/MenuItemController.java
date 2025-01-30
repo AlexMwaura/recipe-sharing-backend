@@ -7,9 +7,7 @@ import com.recipe.sharing.dto.UpdateRecipeDTO;
 import com.recipe.sharing.entities.MenuItem;
 import com.recipe.sharing.services.MenuItemService;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -29,11 +27,8 @@ public class MenuItemController {
     }
     //add items in the db
     @PostMapping("/addItems")
-    public MenuItem createMenuItem(@RequestParam("menuItem") String menuItemJson,
-                                   @RequestParam("image") MultipartFile imageFile) throws IOException {
-        // Convert JSON string to MenuItemDTO
-        MenuItemDTO menuItemDTO = objectMapper.readValue(menuItemJson, MenuItemDTO.class);
-        return menuItemService.saveMenuItem(menuItemDTO, imageFile);
+    public MenuItem addMenuItem(@RequestBody MenuItemDTO menuItemDTO) {
+        return menuItemService.saveMenuItem(menuItemDTO, null); // No file upload
     }
 
     // Retrieve menu items by category using POST
