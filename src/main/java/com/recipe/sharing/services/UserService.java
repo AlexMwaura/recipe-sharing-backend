@@ -20,6 +20,8 @@ public class UserService {
 
         if (userOptional.isPresent()) {
             User user = userOptional.get();
+            System.out.println("User found: " + user.getUsername());
+
             if (user.getPassword().equals(loginRequest.getPassword())) {
                 response.setMessage("Login successful");
                 response.setSuccess(true);
